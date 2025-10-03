@@ -1,17 +1,83 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
-    <head>
-        <meta lang ="en">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        
-    </head>
-    <body>
-        <div id="app">
-            {{ message }} </br> {{ name }}
-        </div>
-        <script type="text/javascript" src="index.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue 3 Example</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- main app-->
+  <div id="app">
+    <p>Message: {{ message }}</p>
+    <p>Name: {{ name }}</p>
+    <p>Discount: {{ your_discount }}$</p>
+    <p>The final price: {{ discount() }}$</p>
+    <p>Temperature: {{ temp }}</p>
+
+    <!-- Data Binding -->
+    <a :href="link" target="_blank">Link</a> <br>
+
+    <!-- Vue Events -->
+   </br> <button @click="increase">Increase</button>
+    <button @click="decrease">Decrease</button>
+    <button @click.once="reset">Reset</button></br>
+
+    <!-- Keyboard Events -->
+    <p>Type any text
+      <input type="text" v-on:keyup="keypressed"/>
+    </p>
+
+    <!-- Two-way data binding -->
+    <p>Type any text. You will see it below.</p>
+    <input type="text" placeholder="Enter a value" v-model="message_2"/>
+    <p>{{ message_2 }}</p>
+
+        <p><input type="text" placeholder="Enter your name" v-model="yourName"></p> 
+  <button @click="saveName">Save</button>
+     <p>Your name: {{ nameIs }}</p>
+
+    <!-- Dynamic CSS classes -->
+    <div v-bind:class="{status:status}">
+      <p>Hi There!</p>
+      <button v-on:click="status=!status">Click Here!</button>
+    </div>
+
+    <!-- Conditional Rendering -->
+    <h1 v-if="gate">Gate Open</h1>
+    <h1 v-else>Gate Closed</h1>
+    <button @click="gate=!gate">Open/Close</button>
+
+    <!-- Looping with arrays -->
+    <p>Student of the month: {{students[1]}}</p>
+    <p v-for="student in students" :key="student">Student: {{student}}</p>
+    <p v-for="player in players" :key="player.name">
+      Player: {{player.name}}. Score: {{player.score}}
+    </p>
+
+<!-- Vue Reference -->
+ <p>Enter a value
+<input type="text" placeholder="Please enter a value" ref="principal"></p>
+<button @click="calculateInterest">Calculate</button>
+<p>Result = {{ interest }}</p>
+
+    <!-- Vue component -->
+    <my-component></my-component>
+  </div>
+
+  <!-- 2 app -->
+  <div id="app2">
+    <p>{{ value }}, {{ price }}</p>
+  </div>
+
+  <!-- 3 app -->
+  <div id="app3">
+    <p>{{ value }}, {{ price }}</p>
+  </div>
+
+  <script src="index.js"></script>
+</body>
 </html>
